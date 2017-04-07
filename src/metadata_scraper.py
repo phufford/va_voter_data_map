@@ -4,9 +4,9 @@ import json
 from selenium import webdriver
 
 __appname__     = ""
-__author__      = "phufford"
+__author__      = "Peter Hufford"
 __copyright__   = ""
-__credits__     = ["phufford", "Marco Sirabella"]  # Authors and bug reporters
+__credits__     = ["Peter Hufford", "Marco Sirabella"]  # Authors and bug reporters
 __license__     = "GPL"
 __version__     = "1.0"
 __maintainers__ = "Marco Sirabella"
