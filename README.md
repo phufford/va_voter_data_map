@@ -8,5 +8,5 @@
 
 
 
-If you have questions email me:
+If you have questions email:
 peterhufford@gmail.com
