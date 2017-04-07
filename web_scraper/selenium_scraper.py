@@ -1,7 +1,6 @@
 import os
 import urllib2
 from selenium import webdriver
-from pySmartDL import SmartDL
 
 path_to_chromedriver = '/home/phufford/VaVotesMap/ElectionDataScraper/chromedriver'
 browser = webdriver.Chrome(executable_path = path_to_chromedriver)
