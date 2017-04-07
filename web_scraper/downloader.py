@@ -1,4 +1,3 @@
-import logging
 import sys
 import urllib2
 
@@ -6,7 +5,6 @@ DIRECTORY = './data/'
 ELECTION_ID_FILENAME = 'election_ids.txt'
 LOG_FILENAME = 'downloads.log'
 
-logging.basicConfig(filename=LOG_FILENAME, level=logging.ERROR)
 ids = open(ELECTION_ID_FILENAME, 'r')
 
 def build_url(election_id):
@@ -26,7 +24,10 @@ while election_id:
                 build_url(election_id) + '/precincts_include:1/')
             csv.write(response.read())
     except:
-        log.warning('Failed to download ' + election_id 
-                    + '/n' + sys.exc_info()[0])
+        log = open(LOG_FILENAME, 'w')
+        log.write('Failed to download ' + election_id 
+        + '/n' + sys.exc_info()[0] + '/n')
+        log.close()
+        continue
 
 print ('done')
