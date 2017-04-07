@@ -26,7 +26,7 @@ while election_id:
 
     except:
         print ('Failed to download ' + election_id + '/n')
-        with open(LOG_FILENAME, 'w') as log:
+        with open(LOG_FILENAME, 'a') as log:
             log.write('Failed to download ' + election_id + '/n')
 
 print ('done')

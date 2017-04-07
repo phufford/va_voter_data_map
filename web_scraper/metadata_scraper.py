@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import json
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-BROWSER = 'CHROME'
+BROWSER = 'PHANTOM'
 ELECTION_ID_FILENAME = 'election_ids.txt'
 METADATA_FILENAME = 'metadata.json'
 PATH_TO_CHROMEDRIVER = './chromedriver'
@@ -10,7 +11,6 @@ URL = 'http://historical.elections.virginia.gov'
 
 def add_election_id(row):
     election_id = row.get_property('id').split('-')[-1]
-    print (election_id)
     if election_id:
         election_ids.append(election_id)
 
@@ -39,8 +39,11 @@ def build_search_url(year):
 def get_driver():
     if BROWSER is 'CHROME':
         return webdriver.Chrome(PATH_TO_CHROMEDRIVER)
+    elif BROWSER is 'PHANTOM':
+        return webdriver.Remote(command_executor='http://127.0.0.1:8910',
+            desired_capabilities=DesiredCapabilities.PHANTOMJS)
     else:
-        # ToDo: Add firefox and phantom-js support here
+        # ToDo: Add firefox support here
         return
 
 def get_office_ids():
