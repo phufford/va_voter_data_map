@@ -23,11 +23,10 @@ while election_id:
             response = urllib2.urlopen(
                 build_url(election_id) + '/precincts_include:1/')
             csv.write(response.read())
+
     except:
-        log = open(LOG_FILENAME, 'w')
-        log.write('Failed to download ' + election_id 
-        + '/n' + sys.exc_info()[0] + '/n')
-        log.close()
-        continue
+        print ('Failed to download ' + election_id + '/n')
+        with open(LOG_FILENAME, 'w') as log:
+            log.write('Failed to download ' + election_id + '/n')
 
 print ('done')
