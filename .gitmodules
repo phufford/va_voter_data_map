@@ -1,0 +1,3 @@
+[submodule "include/phantomjs"]
+	path = include/phantomjs
+	url = git@github.com:ariya/phantomjs.git

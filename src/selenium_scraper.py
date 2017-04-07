@@ -1,9 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import os
-import urllib2
+import urllib.request
 from selenium import webdriver
 
-path_to_chromedriver = './chromedriver'
-browser = webdriver.Chrome(executable_path = path_to_chromedriver)
+__appname__     = ""
+__author__      = "phufford"
+__copyright__   = ""
+__credits__     = ["phufford", "Marco Sirabella"]  # Authors and bug reporters
+__license__     = "GPL"
+__version__     = "1.0"
+__maintainers__ = "Marco Sirabella"
+__email__       = "msirabel@gmail.com"
+__status__      = "Prototype"  # "Prototype", "Development" or "Production"
+__module__      = ""
+
+#path_to_chromedriver = './chromedriver'
+browser = webdriver.PhantomJS(executable_path = driver)
 url = 'http://historical.elections.virginia.gov'
 browser.get(url)
 
@@ -17,12 +31,12 @@ def get_csv_precinct_link(election_id):
     return url + '/elections/download/' + election_id + '/precincts_include:1/'
 
 def download_csv(url, filename):
-    print "downloading " + url
+    print("downloading " + url)
     csv_file = open(filename + '.csv', 'w')
-    response = urllib2.urlopen(url)
+    response = urllib.request.urlopen(url)
     csv_file.write(response.read())
     csv_file.close()
-    print 'response' + str(response)
+    print('response' + str(response))
 
 def get_filename(election_row, election_id):
     filename = []
@@ -37,7 +51,7 @@ for office in browser.find_elements_by_css_selector("#SearchOfficeId optgroup op
         if year.text:
             search_link = build_search_link(year.text, office.get_property("value"))
             search_links.append(search_link)
-print search_links
+print(search_links)
 
 for link in search_links:
     browser.get(link)
@@ -49,7 +63,7 @@ for link in search_links:
     for election in browser.find_elements_by_css_selector('#search_results_table tbody tr'):
         election_id = election.get_property('id').split('-')[-1]
         if election_id:
-            print election_id
+            print(election_id)
             municipality_url = get_csv_municipality_link(election_id)
             precinct_url = get_csv_precinct_link(election_id)
             filename = get_filename(election, election_id)
