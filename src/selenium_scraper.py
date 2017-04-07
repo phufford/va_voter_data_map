@@ -33,7 +33,7 @@ def get_csv_precinct_link(election_id):
 
 def download_csv(url, filename):
     print("downloading " + url)
-    csv_file = open(filename + '.csv', 'w')
+    csv_file = open(filename + '.csv', 'wb')
     response = urllib.request.urlopen(url)
     csv_file.write(response.read())
     csv_file.close()
