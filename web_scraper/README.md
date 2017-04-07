@@ -10,6 +10,7 @@ If running in phantomjs mode install docker and:
 
 **Run (use python 3)**
 `python3 metadata_scraper.py`
+If you want to run this in chrome change `BROWSER = 'PHANTOM'` to `BROWSER = 'CHROME'`
 (It takes a while. Be patient.)
 
 **Then Run (tested this in python 2, sorry!)**
