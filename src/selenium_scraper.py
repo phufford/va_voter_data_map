@@ -17,7 +17,7 @@ __status__      = "Prototype"  # "Prototype", "Development" or "Production"
 __module__      = ""
 
 #path_to_chromedriver = './chromedriver'
-driver = '/usr/bin/phantomjs' # Default aptitude path
+driver = 'phantomjs-2.1.1-linux-x86_64/bin/phantomjs' # Default aptitude path
 browser = webdriver.PhantomJS(executable_path = driver)
 url = 'http://historical.elections.virginia.gov'
 browser.get(url)
