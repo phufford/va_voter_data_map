@@ -2,7 +2,7 @@ import os
 import urllib2
 from selenium import webdriver
 
-path_to_chromedriver = '/home/phufford/VaVotesMap/ElectionDataScraper/chromedriver'
+path_to_chromedriver = './chromedriver'
 browser = webdriver.Chrome(executable_path = path_to_chromedriver)
 url = 'http://historical.elections.virginia.gov'
 browser.get(url)
