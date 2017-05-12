@@ -16,7 +16,7 @@ __module__      = ""
 
 ELECTION_ID_FILENAME = 'election_ids.txt'
 METADATA_FILENAME = 'metadata.json'
-DRIVER_PATH = 'phantomjs-2.1.1-linux-x86_64/bin/phantomjs'
+DRIVER_PATH = 'include/phantomjs/phantomjs'
 URL = 'http://historical.elections.virginia.gov'
 
 def add_election_id(row):
