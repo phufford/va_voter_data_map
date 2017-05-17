@@ -18,7 +18,8 @@ __module__      = ""
 
 #path_to_chromedriver = './chromedriver'
 driver = 'phantomjs-2.1.1-linux-x86_64/bin/phantomjs' # Default aptitude path
-browser = webdriver.PhantomJS(executable_path = driver)
+#browser = webdriver.PhantomJS(executable_path = driver)
+browser = webdriver.PhantomJS()
 url = 'http://historical.elections.virginia.gov'
 browser.get(url)
 
@@ -70,7 +71,7 @@ for link in search_links:
             filename = get_filename(election, election_id)
             download_csv(precinct_url, filename + "-by_precinct")
             download_csv(municipality_url, filename + "-by_municipality")
-            #download_csv(municipality_url)
+            download_csv(municipality_url)
 
 
 """
