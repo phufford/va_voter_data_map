@@ -4,7 +4,7 @@ VOPT = --python=python3
 
 
 scrape: $(VENV)
-	$(VENV)/bin/python src/metadata_scraper.py
+	$(VENV)/bin/python src/scraper.py
 
 build: requirements phantomjs
 
