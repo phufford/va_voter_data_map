@@ -22,6 +22,7 @@ __module__      = ""
 
 DRIVER_PATH = 'include/phantomjs/phantomjs'
 URL = 'http://historical.elections.virginia.gov'
+DATA_DIR = 'data/'
 logger = logging.Logger('root')
 logging.basicConfig(level=logging.INFO)
 
@@ -55,8 +56,10 @@ def curl(url):
     """
     logger.debug(f'Downloading {url}')
     response = urllib.request.urlopen(url)
+    filename = response.headers.get('Content-disposition')
+    filename = filename[filename.find('=') + 1:]
     data = response.read()
-    return data.decode()
+    return {filename: data}
 
 
 downloadURL = URL + '/elections/download/'
@@ -67,7 +70,10 @@ def getCSV(tablerow):
     tr_id = tr_id.replace('election-id-', '')
     assert tr_id.isdigit()
     url = downloadURL + tr_id
-    return curl(url)
+    name, contents = list(curl(url).items())[0]
+    with open(DATA_DIR + name, 'wb') as fp:
+        logging.info(f'Writing file {name}')
+        fp.write(contents)
 
 
 def pages(driver):
@@ -89,8 +95,5 @@ def pages(driver):
 
 
 for i in pages(browser):
-    i.find_element_by_css_selector(
-        '#search_results_table_next'
-    ).get_attribute('class')
     for row in browser.find_elements_by_css_selector('tr.election_item'):
         getCSV(row)
