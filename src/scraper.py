@@ -88,12 +88,19 @@ def pages(driver):
         driver.find_element_by_css_selector(
             '#search_results_table_next'
         ).click()
-        yield driver
+        counter = driver.find_element_by_css_selector(
+                '''#search_results_table_paginate > span >
+                a.fg-button.ui-button.ui-state-default.ui-state-disabled'''
+        ).get_attribute('innerHTML')
+        #yield int(counter), maxcount
+        yield int(counter)
         new = driver.find_element_by_css_selector('body').get_attribute(
             'innerHTML'
         )
 
 
-for i in pages(browser):
-    for row in browser.find_elements_by_css_selector('tr.election_item'):
-        getCSV(row)
+for year in years(browser, ['1962']):
+    for i in pages(browser):
+        print(year, i)
+        for row in browser.find_elements_by_css_selector('tr.election_item'):
+            getCSV(row)
