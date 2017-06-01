@@ -34,12 +34,14 @@ def debug(driver):
 
 def init():
     if os.path.exists(DRIVER_PATH):
-        browser = selenium.webdriver.PhantomJS(DRIVER_PATH)
+        driver = selenium.webdriver.PhantomJS(DRIVER_PATH)
         logging.info('Using local installation of phantomjs')
     else:
-        browser = selenium.webdriver.PhantomJS()
+        driver = selenium.webdriver.PhantomJS()
         logging.info('Using default installation of phantomjs')
-    return browser
+    driver.get(URL)
+    logging.info(f'Going to page `{URL}`')
+    return driver
 
 
 def curl(url):
@@ -69,8 +71,6 @@ def getCSV(tablerow):
 
 
 def years(driver, years=None):
-    driver.get(URL)
-    logging.info(f'Going to page `{URL}`')
     if years is None:
         years = [
             year.get_attribute('innerHTML') for year in
@@ -97,6 +97,7 @@ def years(driver, years=None):
             f'Clicking on search button to get all results from year {year}'
         )
         yield year
+        logging.info('Going back to search screen')
         driver.back()
 
 
@@ -128,7 +129,7 @@ def pages(driver):
 
 if __name__ == '__main__':
     browser = init()
-    for year in years(browser, ['2010']):
+    for year in years(browser, [2014, 2013]):
         for i in pages(browser):
             print(year, i)
             for row in browser.find_elements_by_css_selector('tr.election_item'):
