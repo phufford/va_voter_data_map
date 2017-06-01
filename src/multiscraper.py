@@ -46,9 +46,8 @@ import timeit
 logger = logging.getLogger()
 timer = timeit.Timer()
 starttime = timer.timer()
-logger.setLevel(0)
 
-max_pool_count = 16
+max_pool_count = 4
 {
     8: 522.168079962008,
     4: 678.5831731929939,
