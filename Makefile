@@ -4,6 +4,7 @@ VOPT = --python=python3
 
 
 scrape: $(VENV)
+	mkdir -p data
 	$(VENV)/bin/python src/multiscraper.py
 
 build: requirements phantomjs
