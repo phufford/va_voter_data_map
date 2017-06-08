@@ -40,7 +40,7 @@ def init():
         driver = selenium.webdriver.PhantomJS()
         logging.info('Using default installation of phantomjs')
     driver.get(URL)
-    logging.info(f'Going to page `{URL}`')
+    logging.info('Going to page `{URL}`'.format(URL=URL))
     return driver
 
 
@@ -48,7 +48,7 @@ def curl(url):
     """
     http://stackoverflow.com/questions/7243750/download-file-from-web-in-python-3
     """
-    logger.debug(f'Downloading {url}')
+    logger.debug('Downloading {url}'.format(url=url))
     response = urllib.request.urlopen(url)
     filename = response.headers.get('Content-disposition')
     filename = filename[filename.find('=') + 1:]
@@ -66,7 +66,7 @@ def getCSV(tablerow):
     url = downloadURL + tr_id
     name, contents = list(curl(url).items())[0]
     with open(DATA_DIR + name, 'wb') as fp:
-        logging.info(f'Writing file {name}')
+        logging.info('Writing file {}'.format(DATA_DIR + name))
         fp.write(contents)
 
 
@@ -94,7 +94,8 @@ def years(driver, years=None):
             '#search_form_elections>div>#SearchIndexForm>div>input.splashy.tan'
         ).click()
         logging.info(
-            f'Clicking on search button to get all results from year {year}'
+            '''Clicking on search button to get all results from year
+            {year}'''.format(year=year)
         )
         yield year
         logging.info('Going back to search screen')

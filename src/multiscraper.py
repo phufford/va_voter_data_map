@@ -58,4 +58,4 @@ valid_years = valid_years
 pool_args = [valid_years[i::max_pool_count] for i in range(max_pool_count)]
 p.map(process_one_year, pool_args)
 endtime = timer.timer()
-logging.debug(f'time taken to process: {endtime - starttime}')
+logging.debug('time taken to process: {}'.format(endtime - starttime))
