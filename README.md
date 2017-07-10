@@ -1,10 +1,15 @@
 ### Prerequisities
 
 To run, need a python3 installation with virtualenv installed on it and found
-in $PATH
+in $PATH.
 
+Phantomjs also needs to be intalled on the host machine, and found in $PATH
+
+for a debian machine:
 ```
-pip3 install virtualenv
+# apt install virtualenv
+# apt install phantomjs
+
 ```
 
 ## Installation
@@ -18,4 +23,4 @@ pip3 install virtualenv
 
 
 If you have questions email:
-peterhufford@gmail.com
+msirabel@gmail.com
