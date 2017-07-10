@@ -1,6 +1,7 @@
 
+PYTH=python3
 VENV = venv
-VOPT = --python=python3
+VOPT = --python=$(PYTH)
 
 
 scrape: $(VENV)
@@ -11,12 +12,12 @@ build: requirements phantomjs
 
 
 #http://blog.bottlepy.org/2012/07/16/virtualenv-and-makefiles.html
-$(VENV): $(VENV)/bin/activate
-requirements: requirements.txt $(VENV)/bin/activate
-$(VENV)/bin/activate: requirements.txt
-	test -d $(VENV) || virtualenv $(VENV) $(VOPT)
-	$(VENV)/bin/pip3 install -Ur requirements.txt
+$(VENV)/bin/activate: $(VENV)
 	touch $(VENV)/bin/activate
+requirements: requirements.txt $(VENV)/bin/activate
+$(VENV): requirements.txt
+	virtualenv $(VENV) $(VOPT)
+	$(VENV)/bin/pip3 install -Ur requirements.txt
 
 
 phantomjs-2.1.1.tar.bz2:
